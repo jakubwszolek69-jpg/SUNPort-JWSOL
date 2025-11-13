@@ -194,44 +194,94 @@
   </section>
 
   <!-- KALKULATOR PV -->
-  <section id="kalkulator" class="section">
-    <h2>Kalkulator Instalacji PV</h2>
-    <p>Oblicz, ile paneli i jaka moc instalacji jest potrzebna do Twojego garażu.</p>
-    <div class="calc">
-      <label>Moc instalacji (kW):</label>
-      <input type="number" id="moc" placeholder="np. 5" min="1" step="0.1">
+  <section id="kreator" class="section">
+  <h2>Kreator Zestawu Off-Grid</h2>
+  <p>Skonfiguruj swój własny zestaw: wybierz moc instalacji PV, pojemność magazynu energii i opcjonalnie ładowarkę samochodową.</p>
 
-      <label>Moc jednego panelu (W):</label>
-      <input type="number" id="panel" placeholder="np. 400" min="100" step="10">
+  <div class="calc">
+    <label>Moc instalacji PV (kW):</label>
+    <select id="pv">
+      <option value="3">3 kW</option>
+      <option value="5" selected>5 kW</option>
+      <option value="8">8 kW</option>
+      <option value="10">10 kW</option>
+    </select>
 
-      <label>Cena za 1 kWp (EUR):</label>
-      <input type="number" id="cena" placeholder="np. 1200" min="500">
+    <label>Pojemność magazynu energii (kWh):</label>
+    <select id="bateria">
+      <option value="5">5 kWh</option>
+      <option value="10" selected>10 kWh</option>
+      <option value="15">15 kWh</option>
+      <option value="20">20 kWh</option>
+    </select>
 
-      <button onclick="oblicz()">Oblicz</button>
+    <label>Ładowarka samochodowa:</label>
+    <select id="ladowarka">
+      <option value="0">Nie</option>
+      <option value="1">Tak (11 kW)</option>
+    </select>
 
-      <div id="wynik" class="calc-result" style="display:none;"></div>
-    </div>
-  </section>
+    <button type="button" onclick="stworzZestaw()">Oblicz zestaw</button>
+
+    <div id="wynikZestawu" class="calc-result" style="display:none;"></div>
+    <button id="zamowZestaw" type="button" style="display:none; margin-top:15px;" onclick="przeniesDoForm()">Zamów ten zestaw</button>
+  </div>
+</section>
 
   <!-- ZAMÓWIENIE -->
   <section id="zamow" class="section">
-    <h2>Zamów Garaż z Instalacją PV</h2>
-    <form action="https://formspree.io/f/mqawanro" method="post" enctype="multipart/form-data">
-      <label>Model garażu:</label>
-      <select name="model">
-        <option>Standard 3x5 m (2 kW)</option>
-        <option>Premium 4x6 m (4 kW)</option>
-        <option>Double 6x6 m (5 kW)</option>
-      </select>
+  <h2>Zamów Garaż z Instalacją PV</h2>
+  <form action="https://formspree.io/f/mqawanro" method="POST" enctype="multipart/form-data" id="contactForm">
+    <label>Model garażu:</label>
+    <select name="model">
+      <option>Standard 3x5 m (2 kW)</option>
+      <option>Premium 4x6 m (4 kW)</option>
+      <option>Double 6x6 m (5 kW)</option>
+    </select>
+    <input type="text" name="name" placeholder="Twoje imię i nazwisko" required>
+    <input type="email" name="email" placeholder="Twój e-mail" required>
+    <textarea id="wiadomosc" name="message" rows="5" placeholder="Dodatkowe informacje..."></textarea>
+    <button type="submit">Wyślij zapytanie</button>
+  </form>
+</section>
 
-      <input type="text" name="name" placeholder="Twoje imię i nazwisko" required>
-      <input type="email" name="email" placeholder="Twój e-mail" required>
-      <textarea name="message" rows="5" placeholder="Dodatkowe informacje..."></textarea>
+<script>
+function stworzZestaw() {
+  const pv = parseFloat(document.getElementById("pv").value);
+  const bateria = parseFloat(document.getElementById("bateria").value);
+  const ladowarka = parseInt(document.getElementById("ladowarka").value);
 
-      <button type="submit">Wyślij zamówienie</button>
-    </form>
-  </section>
+  const cenaPV = 1200;  // €/kW
+  const cenaBat = 500;  // €/kWh
+  const cenaLad = 1000; // €
 
+  const kosztPV = pv * cenaPV;
+  const kosztBat = bateria * cenaBat;
+  const kosztLad = ladowarka ? cenaLad : 0;
+  const calkowity = kosztPV + kosztBat + kosztLad;
+
+  const zestawOpis = 
+    `🔆 Instalacja PV: ${pv} kW (${kosztPV.toLocaleString()} €)
+🔋 Magazyn energii: ${bateria} kWh (${kosztBat.toLocaleString()} €)
+🚗 Ładowarka EV: ${ladowarka ? "Tak (" + kosztLad.toLocaleString() + " €)" : "Nie"}
+💰 Szacunkowy koszt zestawu: ${calkowity.toLocaleString()} €`;
+
+  const wynik = document.getElementById("wynikZestawu");
+  wynik.style.display = "block";
+  wynik.innerHTML = zestawOpis.replace(/\n/g, "<br>");
+  
+  document.getElementById("zamowZestaw").style.display = "inline-block";
+  wynik.dataset.opis = zestawOpis; // zapamiętaj dane do formularza
+}
+
+function przeniesDoForm() {
+  const opis = document.getElementById("wynikZestawu").dataset.opis;
+  const textarea = document.getElementById("wiadomosc");
+  textarea.value = opis + "\n\nDodatkowe informacje: ";
+  window.location.hash = "#zamow"; // przewiń do formularza
+  textarea.focus();
+}
+</script>
   <!-- PARTNERZY -->
   <section class="partners">
     <h2>Nasi Partnerzy</h2>

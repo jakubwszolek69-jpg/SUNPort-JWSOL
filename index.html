@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JW-SOL | Garaże Blaszane z Instalacją PV Off-Grid</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      color: #333;
+      background-color: #f4f4f4;
+    }
+
+    /* --- HERO --- */
+    .hero {
+      position: relative;
+      height: 100vh;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+        url('https://cdn.prod.website-files.com/5ebc12985f567c48a37040ab/609d094d47d277c6c6deec44_Bez-nazwy-2.jpg')
+        no-repeat center center/cover;
+    }
+
+    .hero-content {
+      z-index: 2;
+      max-width: 800px;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 4rem;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      background-color: #ffbb00;
+      color: #000;
+      padding: 12px 30px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #ffd84d;
+    }
+
+    /* --- SEKCJE --- */
+    .section {
+      padding: 80px 20px;
+      background-color: white;
+      text-align: center;
+    }
+
+    /* --- GALERIA --- */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 15px;
+      margin-top: 40px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    /* --- FORMULARZ --- */
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: #ffbb00;
+      color: #000;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #ffd84d;
+    }
+
+    /* --- PARTNERZY --- */
+    .partners {
+      background-color: #fafafa;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .partners img {
+      max-width: 180px;
+      margin: 20px;
+      opacity: 0.8;
+      transition: 0.3s;
+    }
+
+    .partners img:hover {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    /* --- STOPKA --- */
+    footer {
+      background-color: #111;
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-content">
+      <h1>JW-SOL</h1>
+      <h2>Garaże Blaszane z Instalacją PV Off-Grid</h2>
+      <p>Energia prosto z dachu Twojego garażu — niezależność w najlepszym wydaniu</p>
+      <a href="#oferta" class="btn">Zobacz ofertę</a>
+    </div>
+  </header>
+
+  <!-- OFERTA -->
+  <section id="oferta" class="section">
+    <h2>Nasza Oferta</h2>
+    <p>Oferujemy solidne garaże zintegrowane z kompletnymi zestawami PV off-grid. 
+    Współpracujemy z <strong>Hortogarage</strong> – oficjalnym partnerem JW-SOL.</p>
+
+    <div class="gallery">
+      <img src="https://shift.ca/wp-content/uploads/2019/11/9.94kw-cedar.jpg" alt="Garaż z panelami PV">
+      <img src="https://belmontsolar.b-cdn.net/wp-content/uploads/Blog-Posts/Garage-Solar-Panels/can-you-put-solar-panels-on-a-garage-roof-3.jpg" alt="Garaż z fotowoltaiką">
+      <img src="https://www.worldwidesteelbuildings.com/wp-content/uploads/2022/10/01-7-1-1024x539.jpg" alt="Metalowy garaż z PV">
+      <img src="https://www.pretapower.com/wp-content/uploads/2025/08/Commercial-Solar-Install-on-Corrugated-Metal-Warehouse-Roof.jpg" alt="Blaszany garaż z panelami PV">
+      <img src="https://www.photos-public-domain.com/wp-content/uploads/2010/11/solar_panels_on_parking_garage.jpg" alt="Parking z fotowoltaiką">
+    </div>
+  </section>
+
+  <!-- FORMULARZ KONTAKTOWY -->
+  <section id="kontakt" class="section">
+    <h2>Skontaktuj się z nami</h2>
+    <p>Masz pytania? Zostaw wiadomość — odpowiemy w ciągu 24h.</p>
+    <form action="mailto:twojemail@jwsol.pl" method="post" enctype="text/plain">
+      <input type="text" name="name" placeholder="Twoje imię" required>
+      <input type="email" name="email" placeholder="Twój e-mail" required>
+      <textarea name="message" rows="5" placeholder="Twoja wiadomość..." required></textarea>
+      <button type="submit">Wyślij</button>
+    </form>
+  </section>
+
+  <!-- PARTNERZY -->
+  <section class="partners">
+    <h2>Nasi Partnerzy</h2>
+    <p>Współpracujemy z najlepszymi w branży</p>
+    <div>
+      <img src="https://hortogarage.de/wp-content/uploads/2023/03/horto-logo.png" alt="Hortogarage - partner JW-SOL">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/Solar_power_icon.png" alt="Ikona PV">
+    </div>
+  </section>
+
+  <!-- STOPKA -->
+  <footer>
+    <p>© 2025 JW-SOL | Kontakt: <em>(wstaw dane kontaktowe)</em></p>
+  </footer>
+
+</body>
+</html>

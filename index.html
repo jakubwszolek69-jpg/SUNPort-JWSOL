@@ -348,6 +348,60 @@ fetch('https://ipapi.co/json/')
     }
   });
 </script>
+  <!-- Przełącznik języka -->
+<div id="lang-switcher" style="position:fixed; top:10px; right:10px; z-index:1000;">
+  <button onclick="setLang('pl')">🇵🇱 PL</button>
+  <button onclick="setLang('de')">🇩🇪 DE</button>
+  <button onclick="setLang('en')">🇬🇧 EN</button>
+</div>
+
+<script>
+const textPL = {
+  heroTitle: "SunPort-JW-SOL",
+  heroSubtitle: "Garaże Blaszane z Instalacją PV Off-Grid",
+  heroDesc: "Energia prosto z dachu Twojego garażu — niezależność w najlepszym wydaniu",
+  ofertaTitle: "Nasza Oferta",
+  ofertaDesc: "Oferujemy solidne garaże zintegrowane z kompletnymi zestawami PV off-grid. Współpracujemy z Hortogarage – oficjalnym partnerem SunPort-JW-SOL.",
+  zamowTitle: "Zamów Garaż z Instalacją PV",
+  kreatorTitle: "Kreator Zestawu Off-Grid",
+  calcDesc: "Skonfiguruj swój własny zestaw: wybierz moc instalacji PV, pojemność magazynu energii i opcjonalnie ładowarkę samochodową."
+};
+
+const textDE = {
+  heroTitle: "SunPort-JW-SOL",
+  heroSubtitle: "Blechgaragen mit Off-Grid PV-Anlage",
+  heroDesc: "Energie direkt vom Dach Ihrer Garage – Unabhängigkeit in Bestform",
+  ofertaTitle: "Unser Angebot",
+  ofertaDesc: "Wir bieten solide Garagen mit kompletten Off-Grid-PV-Systemen. Wir arbeiten mit Hortogarage – offizieller Partner von SunPort-JW-SOL zusammen.",
+  zamowTitle: "Garage mit PV-Anlage bestellen",
+  kreatorTitle: "Off-Grid Set-Konfigurator",
+  calcDesc: "Konfigurieren Sie Ihr eigenes Set: Wählen Sie PV-Leistung, Speicherkapazität und optional ein Elektroauto-Ladegerät."
+};
+
+const textEN = {
+  heroTitle: "SunPort-JW-SOL",
+  heroSubtitle: "Metal Garages with Off-Grid PV System",
+  heroDesc: "Energy straight from your garage roof — independence at its best",
+  ofertaTitle: "Our Offer",
+  ofertaDesc: "We offer sturdy garages integrated with complete off-grid PV systems. We cooperate with Hortogarage – official SunPort-JW-SOL partner.",
+  zamowTitle: "Order Garage with PV System",
+  kreatorTitle: "Off-Grid Set Builder",
+  calcDesc: "Configure your own set: choose PV system power, battery capacity, and optionally an EV charger."
+};
+
+function setLang(lang) {
+  const texts = lang === 'de' ? textDE : (lang === 'en' ? textEN : textPL);
+  document.querySelector(".hero h1").textContent = texts.heroTitle;
+  document.querySelector(".hero h2").textContent = texts.heroSubtitle;
+  document.querySelector(".hero p").textContent = texts.heroDesc;
+  document.querySelector("#oferta h2").textContent = texts.ofertaTitle;
+  document.querySelector("#oferta p").textContent = texts.ofertaDesc;
+  document.querySelector("#zamow h2").textContent = texts.zamowTitle;
+  document.querySelector("#kreator h2").textContent = texts.kreatorTitle;
+  document.querySelector("#kreator p").textContent = texts.calcDesc;
+}
+</script>
+
 
 </body>
 </html>

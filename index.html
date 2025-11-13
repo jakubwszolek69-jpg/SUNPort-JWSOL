@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>JW-SOL | Garaże Blaszane z Instalacją PV Off-Grid</title>
+  <title>SunPort-JW-SOL | Garaże Blaszane z Instalacją PV Off-Grid</title>
   <style>
     body {
       margin: 0;
       font-family: "Poppins", sans-serif;
       color: #333;
       background-color: #f4f4f4;
+      scroll-behavior: smooth;
     }
 
     /* --- HERO --- */
@@ -35,6 +36,7 @@
     h1 {
       font-size: 4rem;
       margin-bottom: 10px;
+      letter-spacing: 2px;
     }
 
     h2 {
@@ -91,7 +93,7 @@
       text-align: left;
     }
 
-    input, textarea {
+    input, textarea, select {
       width: 100%;
       padding: 12px;
       margin: 8px 0;
@@ -142,6 +144,26 @@
       padding: 20px 10px;
       font-size: 0.9rem;
     }
+
+    /* --- KALKULATOR PV --- */
+    .calc {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #f7f7f7;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      text-align: left;
+    }
+
+    .calc-result {
+      background-color: #fff3cd;
+      border-left: 4px solid #ffbb00;
+      padding: 15px;
+      margin-top: 15px;
+      border-radius: 6px;
+      font-weight: 600;
+    }
   </style>
 </head>
 <body>
@@ -149,7 +171,7 @@
   <!-- HERO -->
   <header class="hero">
     <div class="hero-content">
-      <h1>JW-SOL</h1>
+      <h1>SunPort-JW-SOL</h1>
       <h2>Garaże Blaszane z Instalacją PV Off-Grid</h2>
       <p>Energia prosto z dachu Twojego garażu — niezależność w najlepszym wydaniu</p>
       <a href="#oferta" class="btn">Zobacz ofertę</a>
@@ -160,7 +182,7 @@
   <section id="oferta" class="section">
     <h2>Nasza Oferta</h2>
     <p>Oferujemy solidne garaże zintegrowane z kompletnymi zestawami PV off-grid. 
-    Współpracujemy z <strong>Hortogarage</strong> – oficjalnym partnerem JW-SOL.</p>
+    Współpracujemy z <strong>Hortogarage</strong> – oficjalnym partnerem SunPort-JW-SOL.</p>
 
     <div class="gallery">
       <img src="https://shift.ca/wp-content/uploads/2019/11/9.94kw-cedar.jpg" alt="Garaż z panelami PV">
@@ -171,15 +193,42 @@
     </div>
   </section>
 
-  <!-- FORMULARZ KONTAKTOWY -->
-  <section id="kontakt" class="section">
-    <h2>Skontaktuj się z nami</h2>
-    <p>Masz pytania? Zostaw wiadomość — odpowiemy w ciągu 24h.</p>
-    <form action="mailto:twojemail@jwsol.pl" method="post" enctype="text/plain">
-      <input type="text" name="name" placeholder="Twoje imię" required>
+  <!-- KALKULATOR PV -->
+  <section id="kalkulator" class="section">
+    <h2>Kalkulator Instalacji PV</h2>
+    <p>Oblicz, ile paneli i jaka moc instalacji jest potrzebna do Twojego garażu.</p>
+    <div class="calc">
+      <label>Moc instalacji (kW):</label>
+      <input type="number" id="moc" placeholder="np. 5" min="1" step="0.1">
+
+      <label>Moc jednego panelu (W):</label>
+      <input type="number" id="panel" placeholder="np. 400" min="100" step="10">
+
+      <label>Cena za 1 kWp (EUR):</label>
+      <input type="number" id="cena" placeholder="np. 1200" min="500">
+
+      <button onclick="oblicz()">Oblicz</button>
+
+      <div id="wynik" class="calc-result" style="display:none;"></div>
+    </div>
+  </section>
+
+  <!-- ZAMÓWIENIE -->
+  <section id="zamow" class="section">
+    <h2>Zamów Garaż z Instalacją PV</h2>
+    <form action="mailto:kontakt@sunport-jwsol.de" method="post" enctype="text/plain">
+      <label>Model garażu:</label>
+      <select name="model">
+        <option>Standard 3x5 m (2 kW)</option>
+        <option>Premium 4x6 m (4 kW)</option>
+        <option>Double 6x6 m (5 kW)</option>
+      </select>
+
+      <input type="text" name="name" placeholder="Twoje imię i nazwisko" required>
       <input type="email" name="email" placeholder="Twój e-mail" required>
-      <textarea name="message" rows="5" placeholder="Twoja wiadomość..." required></textarea>
-      <button type="submit">Wyślij</button>
+      <textarea name="message" rows="5" placeholder="Dodatkowe informacje..."></textarea>
+
+      <button type="submit">Wyślij zamówienie</button>
     </form>
   </section>
 
@@ -188,15 +237,32 @@
     <h2>Nasi Partnerzy</h2>
     <p>Współpracujemy z najlepszymi w branży</p>
     <div>
-      <img src="https://hortogarage.de/wp-content/uploads/2023/03/horto-logo.png" alt="Hortogarage - partner JW-SOL">
+      <img src="https://hortogarage.de/wp-content/uploads/2023/03/horto-logo.png" alt="Hortogarage - partner SunPort-JWSOL">
       <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/Solar_power_icon.png" alt="Ikona PV">
     </div>
   </section>
 
   <!-- STOPKA -->
   <footer>
-    <p>© 2025 JW-SOL | Kontakt: <em>(wstaw dane kontaktowe)</em></p>
+    <p>© 2025 SunPort-JW-SOL | Kontakt: <em>(uzupełnij dane kontaktowe)</em></p>
   </footer>
 
+  <script>
+    function oblicz() {
+      const moc = parseFloat(document.getElementById("moc").value);
+      const panel = parseFloat(document.getElementById("panel").value);
+      const cena = parseFloat(document.getElementById("cena").value);
+      if (isNaN(moc) || isNaN(panel) || isNaN(cena)) return alert("Uzupełnij wszystkie pola!");
+
+      const ilosc = Math.ceil((moc * 1000) / panel);
+      const koszt = Math.round(moc * cena);
+      const wynik = document.getElementById("wynik");
+      wynik.style.display = "block";
+      wynik.innerHTML = `
+        🔋 Liczba paneli: <strong>${ilosc}</strong><br>
+        💰 Szacowany koszt: <strong>${koszt.toLocaleString()} EUR</strong>
+      `;
+    }
+  </script>
 </body>
 </html>

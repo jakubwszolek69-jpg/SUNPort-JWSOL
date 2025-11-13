@@ -314,5 +314,40 @@ function przeniesDoForm() {
       `;
     }
   </script>
+  <script>
+fetch('https://ipapi.co/json/')
+  .then(response => response.json())
+  .then(data => {
+    if (data.country === "DE") {
+      // Zmiana nagłówków
+      document.querySelector('h1').innerText = "SunPort-JWSOL";
+      document.querySelector('.hero-content h2').innerText = "Blechgaragen mit PV-Off-Grid-Anlage";
+      document.querySelector('.hero-content p').innerText = "Energie direkt vom Dach Ihrer Garage – Unabhängigkeit in bester Form";
+      document.querySelector('#oferta h2').innerText = "Unser Angebot";
+      document.querySelector('#oferta p').innerHTML = "Wir bieten solide Garagen mit kompletten Off-Grid-PV-Sets. <strong>Hortogarage</strong> ist offizieller Partner von SunPort-JWSOL.";
+
+      // Kreator
+      document.querySelector('#kreator h2').innerText = "Off-Grid-Set-Konfigurator";
+      document.querySelector('#kreator p').innerText = "Konfigurieren Sie Ihr Set: Wählen Sie PV-Leistung, Batteriespeicherkapazität und optional ein Auto-Ladegerät.";
+
+      // Formular
+      document.querySelector('#zamow h2').innerText = "Bestellen Sie Ihre Garage mit PV-Anlage";
+      document.querySelector('#contactForm [name=name]').placeholder = "Ihr Name";
+      document.querySelector('#contactForm [name=email]').placeholder = "Ihre E-Mail";
+      document.querySelector('#contactForm [name=message]').placeholder = "Weitere Informationen...";
+
+      // Przycisk formularza
+      document.querySelector('#contactForm button').innerText = "Anfrage senden";
+
+      // Przyciski kreatora
+      document.querySelector('.calc button').innerText = "Set erstellen";
+      document.querySelector('#zamowZestaw').innerText = "Dieses Set bestellen";
+
+      // Przyciski oferty
+      document.querySelector('.btn').innerText = "Angebot ansehen";
+    }
+  });
+</script>
+
 </body>
 </html>
